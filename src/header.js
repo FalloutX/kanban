@@ -12,6 +12,7 @@ class Header {
   init () {
     // All the setup for a component needs to be done here. (gets called only once)
     this.container = document.createElement('header')
+    const {members} = this.store.getState();
     this.container.classList = 'navbar'
     this.container.innerHTML = `
       <section class="navbar-section">
@@ -19,6 +20,14 @@ class Header {
       </section>
       <section class="navbar-section">
         <div> Members: </div>
+        ${
+          Object.values(members).map(member => {
+            const memberNameFirstLetter = member.name.charAt(0).toUpperCase();
+            return `
+              <div class="task-assignee-avatar header-avatar" title="${member.name}">${memberNameFirstLetter}</div>
+            `
+          }).join('')
+         }
       </section>
     `;
 

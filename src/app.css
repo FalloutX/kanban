@@ -102,7 +102,7 @@ body {
   margin-right: 8px;
 }
 
-.task .task-assignee-avatar {
+.task-assignee-avatar {
   background: #355263;
   color: #f7f7f7;
   border-radius: 10px;
@@ -113,6 +113,9 @@ body {
   align-items: center;
   border-radius: 50%;
   font-weight: bold;
+}
+.task-assignee-avatar.header-avatar {
+  margin: 0 2px;
 }
 .form-info {
   padding: 0.3rem;

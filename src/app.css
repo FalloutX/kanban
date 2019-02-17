@@ -63,6 +63,12 @@ body {
   padding: 6px 8px 2px;
   margin-bottom: 8px;
 }
+.task.overdue {
+  background-color: #eb5a466b;
+}
+.task.underdue {
+  background-color: #61bd4f6b;
+}
 
 .task .task-desc {
   color: #17394d;
@@ -95,6 +101,7 @@ body {
 .task .task-assignee-name {
   margin-right: 8px;
 }
+
 .task .task-assignee-avatar {
   background: #355263;
   color: #f7f7f7;
@@ -107,4 +114,6 @@ body {
   border-radius: 50%;
   font-weight: bold;
 }
-
+.form-info {
+  padding: 0.3rem;
+}

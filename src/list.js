@@ -48,7 +48,22 @@ class List {
     const tasksByState = selectors.tasksByState(this.store.getState(), currentState.id)
     const taskCards = tasksByState.map(task => new TaskCard({
       task,
-      onClick: console.log,
+      onClick: () => {
+        const form = task;
+        const taskModal = new TaskModal(this.store, {
+          form: form,
+          onSubmit: (data) => {
+            this.store.dispatch({ type: ActionTypes.EDIT_TASK, payload: data });
+            const modal = this.container.querySelector('.outer-modal')
+            this.container.removeChild(modal);
+          },
+          onCancel: () => {
+            const modal = this.container.querySelector('.outer-modal')
+            this.container.removeChild(modal);
+          }
+        });
+        this.container.appendChild(taskModal);
+      },
       onDelete: (id) => this.store.dispatch({
         type: ActionTypes.DELETE_TASK,
         payload: {

@@ -2,6 +2,7 @@
 const ActionTypes = {
   ADD_TASK: 'ADD_TASK',
   DELETE_TASK: 'DELETE_TASK',
+  EDIT_TASK: 'EDIT_TASK'
 }
 
 const initState = {
@@ -45,15 +46,28 @@ const appReducer = (state, { type, payload }) => {
           id: makeId(payload.description)
         }])
       });
-    case ActionTypes.DELETE_TASK:
+    case ActionTypes.DELETE_TASK: {
       const tasks = state.tasks;
       const { id } = payload;
       const newTasks = tasks.filter(task => task.id !== id);
       return Object.assign({}, state, {
         tasks: newTasks
       });
-    case 'RESET':
-      return 0;
+    }
+    case ActionTypes.EDIT_TASK:
+      const { id } = payload
+      const tasks = state.tasks;
+      const newTasks = tasks.reduce((allTasks, currentTask) => {
+        if (currentTask.id !== id) {
+          return allTasks.concat([currentTask])
+        } else {
+          const newTask = Object.assign({}, currentTask, payload)
+          return allTasks.concat([newTask])
+        }
+      }, [])
+      return Object.assign({}, state, {
+        tasks: newTasks
+      });
     default:
       return state;
   }

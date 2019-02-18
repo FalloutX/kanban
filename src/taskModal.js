@@ -26,14 +26,12 @@ class TaskModal {
     });
   }
   clickSave() {
-    console.log(this.state);
     this.onSubmit(this.state)
   }
   clickCancel() {
     this.onCancel()
   }
   onDblClickField (event) {
-    console.log('here');
     const target = event.target;
     const fieldName = target.getAttribute('data-attr')
     this.cleanEventListeners();
@@ -144,6 +142,10 @@ class TaskModal {
     
     const cancelButton = this.container.querySelector(`[data-fn="cancel"]`)
     cancelButton && cancelButton.addEventListener('click', this.clickCancel)
+    this.container.addEventListener('click', this.clickCancel);
+    this.container.querySelector('.inner-modal').addEventListener('click', (e) => {
+      e.stopPropagation();
+    })
   }
   cleanEventListeners () {
     this.fields.forEach(f => {
@@ -159,6 +161,10 @@ class TaskModal {
     
     const cancelButton = this.container.querySelector(`[data-fn="cancel"]`)
     cancelButton && cancelButton.removeEventListener('click', this.clickCancel)
+    this.container.removeEventListener('click', this.clickCancel);
+    this.container.querySelector('.inner-modal').removeEventListener('click', (e) => {
+      e.stopPropagation();
+    })
   }
   init () {
     this.container = document.createElement('div')

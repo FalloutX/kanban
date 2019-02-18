@@ -47,6 +47,7 @@ body {
   justify-content: space-around;
   align-items: center;
   left: 0;
+  cursor: pointer;
 }
 .inner-modal {
   width: 50%;
@@ -54,6 +55,7 @@ body {
   height: auto;
   background: #f5f6f7;
   padding: 16px;
+  cursor: initial;
 }
 .task {
   background-color: #fff;

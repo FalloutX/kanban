@@ -9,7 +9,8 @@ class TaskCard {
     this.onClickDelete = this.onClickDelete.bind(this);
     return this.init();
   }
-  onClickDelete () {
+  onClickDelete (e) {
+    e.stopPropagation();
     this.onDelete(this.task.id)
   }
 
